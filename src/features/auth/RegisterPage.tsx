@@ -66,7 +66,7 @@ const RegisterPage: React.FC = () => {
               helperText={errors.password?.message}
               sx={{ mb: 2 }}
             />
-            <Button type="submit" variant="contained" color="primary">Registrarse</Button>
+            <Button type="submit" variant="contained" color="primary">Sign up</Button>
           </Box>
 
           <Box mt={2}>
