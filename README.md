@@ -1,54 +1,86 @@
-# React + TypeScript + Vite
+# SMS Web Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the frontend application for the SMS Messaging API. It provides a simple and intuitive UI to register, log in, and send SMS messages using the backend service.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Getting Started
 
-## Expanding the ESLint configuration
+### Prerequisites
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Node.js >= 18
+- npm or yarn
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+---
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Installation
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+1. Clone the repository:
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+  ```bash
+  git clone https://github.com/JesfrinGnZ/sms-web
+  cd sms-web
+  ```
+
+2. Install dependencies:
+
+  ```bash
+  npm install
+  ```
+
+3. Start the development server:
+
+  ```bash
+  npm run dev
+  ```
+
+4. Visit the app in your browser:
+
+  <http://localhost:5173>
+
+## 🧩 Project Structure
+
+The frontend application follows a modular folder structure for scalability and separation of concerns:
+
+## 📁 Project Folder Overview
+
+- `api/` – Contains the Axios instance and API service functions to interact with the backend.
+- `components/` – Reusable and stateless UI components, such as the SMS form.
+- `features/` – Feature-based folder structure grouping pages by domain (e.g., `auth`, `sms`).
+  - `auth/` – Pages related to authentication like login and registration.
+  - `sms/` – Page responsible for sending SMS messages.
+- `routes/` – Contains route-related logic, including protected routes (`PrivateRoute`).
+- `types/` – Shared TypeScript interfaces and type definitions used across the app.
+- `App.css` – Global styling for the application.
+- `main.tsx` / `App.tsx` – Entry point and root component of the React application.
+
+### 🔹 Highlights
+
+- **Modular features** (`auth/`, `sms/`) improve maintainability and scalability.
+- **Type safety** with dedicated files for DTOs/interfaces in `types/`.
+- **Routing logic** is encapsulated in `PrivateRoute.tsx` to protect authenticated views.
+- **Reusable UI components** (e.g., `SmsForm`) live under `components/`.
+
+## Notable Dependencies
+
+- **React 19** – Core UI library for building user interfaces.
+- **React Hook Form** – Efficient and scalable form management and validation.
+- **Axios** – Promise-based HTTP client for API requests.
+- **Material UI (MUI)** – Component library for styled and accessible UI elements.
+- **React Router DOM v7** – Declarative routing for React applications.
+- **Vite** – Fast development server and build tool optimized for modern frameworks.
+- **TypeScript** – Adds static typing to improve code reliability and developer experience.
+
+---
+
+## Authentication Flow
+
+- Upon registering or logging in, the backend returns a **JWT token**.
+- This token is stored in `localStorage` and automatically included in the `Authorization` header for authenticated API calls.
+- After successful login or registration, the user is redirected to the **SMS form page** to send a message.
+
+## 📫 API Integration
+
+Make sure the backend is running at: <http://localhost:8080>
+
+If needed, update the base URL in the Axios `apiClient` configuration file to match your backend environment.
