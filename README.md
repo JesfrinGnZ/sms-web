@@ -8,8 +8,8 @@ This is the frontend application for the SMS Messaging API. It provides a simple
 
 ### Prerequisites
 
-- Node.js >= 18
-- npm or yarn
+- Node.js **20.13.1** or higher (recommended)
+- npm
 
 ---
 
